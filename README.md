@@ -1,4 +1,22 @@
 # Data Quality Service
 Server-side data validation with an API that accepts a CSV file and a set of data validation parameters
 
-Backend: Python
+API: FastAPI
+Backend: Python, Pandas
+
+## Start Virtual Environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+## Install FastAPI
+pip install fastapi
+pip install pandas
+
+## Start FastAPI Development Server
+fastapi dev
+
+## Call the API from the browser
+Visit http://127.0.0.1:8000 to view the API response as a JSON object
+
+## Stop the Server
+On Mac: Ctrl+C
