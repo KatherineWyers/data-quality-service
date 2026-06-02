@@ -4,7 +4,14 @@ Server-side data validation with an API that accepts a CSV file and a set of dat
 API: FastAPI
 Backend: Python, Pandas
 
-## Start Virtual Environment
+## Enter the backend directory
+From the project directory:
+`
+cd backend
+`
+
+## Virtual Environment
+First time Installation:
 `
 python3 -m venv .venv
 source .venv/bin/activate
@@ -13,6 +20,9 @@ source .venv/bin/activate
 ## Install FastAPI
 `
 pip install fastapi
+`
+
+`
 pip install pandas
 `
 
