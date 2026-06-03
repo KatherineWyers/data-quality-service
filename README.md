@@ -1,35 +1,44 @@
 # Data Quality Service
+
 Server-side data validation with an API that accepts a CSV file and a set of data validation parameters
 
-API: FastAPI
-Backend: Python, Pandas
+Client-side ReactJS frontend to trigger the data validation
 
-## Enter the backend directory
-From the project directory:
+API: FastAPI
+Backend: Python, Pandas, Pandera
+Frontend: ReactJS, TypeScript
+
+## Installation: Backend
 `
 cd backend
 `
-
-## Virtual Environment
-First time Installation:
+### Set virtual environment:
 `
 python3 -m venv .venv
+`
+`
 source .venv/bin/activate
 `
-
-## Install FastAPI
+### Install Dependencies
 `
 pip install fastapi pandas pandera
 `
-
-
-## Start FastAPI Development Server
+### Start FastAPI Development Server
 `
 fastapi dev
 `
-
-## Call the API from the browser
-Visit http://127.0.0.1:8000 to view the API response as a JSON object
-
-## Stop the Server
-On Mac: Ctrl+C
+## Call the API using a browser or postman GET request
+http://localhost:8000/validate
+## Installation: FrontEnd
+`
+cd frontend
+`
+`
+npm install
+`
+### Start the development server
+`
+npm run dev
+`
+## Launch the app in the browser
+Visit http://localhost:5173/
