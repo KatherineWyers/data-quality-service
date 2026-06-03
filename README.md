@@ -2,13 +2,14 @@
 
 Server-side data validation with an API that accepts a CSV file and a set of data validation parameters
 
-Client-side ReactJS frontend to trigger the data validation
+Simple client-side ReactJS frontend to trigger the data validation
 
 API: FastAPI
 Backend: Python, Pandas, Pandera
 Frontend: ReactJS, TypeScript
 
 ## Installation: Backend
+From root directory:
 `
 cd backend
 `
@@ -30,6 +31,7 @@ fastapi dev
 ## Call the API using a browser or postman GET request
 http://localhost:8000/validate
 ## Installation: FrontEnd
+From root directory:
 `
 cd frontend
 `
@@ -40,5 +42,5 @@ npm install
 `
 npm run dev
 `
-## Launch the app in the browser
+### Launch the app in the browser
 Visit http://localhost:5173/

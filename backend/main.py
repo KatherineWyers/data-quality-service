@@ -9,27 +9,6 @@ app = FastAPI()
 
 CSV_PATH = "test-assets/test-users.csv"
 
-@app.get("/", response_class=HTMLResponse)
-def index():
-    return """
-    <html>
-      <body>
-        <h2>CSV Validator</h2>
-        <button onclick="runValidation()">Run Validation</button>
-        <pre id="result" style="margin-top: 1rem;"></pre>
-
-        <script>
-          async function runValidation() {
-            document.getElementById("result").textContent = "Running...";
-            const res = await fetch("/validate");
-            const data = await res.json();
-            document.getElementById("result").textContent = JSON.stringify(data, null, 2);
-          }
-        </script>
-      </body>
-    </html>
-    """
-
 @app.get("/validate")
 def validate_csv():
     df = pd.read_csv("test-assets/test-users.csv")
