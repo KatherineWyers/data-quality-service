@@ -19,12 +19,9 @@ source .venv/bin/activate
 
 ## Install FastAPI
 `
-pip install fastapi
+pip install fastapi pandas pandera
 `
 
-`
-pip install pandas
-`
 
 ## Start FastAPI Development Server
 `
