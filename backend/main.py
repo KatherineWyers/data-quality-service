@@ -1,34 +1,41 @@
-import io
 import pandas as pd
-import pandera.pandas as pa
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse, JSONResponse
-from rules import RULES
+from fastapi.responses import JSONResponse
+from services.validator import ValidatorService
 
 app = FastAPI()
 
-CSV_PATH = "test-assets/test-users.csv"
+DATA = pd.DataFrame({
+    "id": [1, 2, 3, 4],
+    "name": ["Jane", "Tom", "Bob","Jim"],
+    "age": [25, 30, 34, 67],
+})
+
+RULES_JSON = {
+    "settings": {
+        "strict_columns": True
+    },
+    "columns": {
+        "id": {
+            "required": True,
+            "type": "one_dim_integer",
+            "validation_params": {"min": 1},
+        },
+        "name": {
+            "required": True,
+            "type": "alphatext",
+            "validation_params": {"min-length": 3, "max-length": 30},
+        },
+        "age": {
+            "required": True,
+            "type": "one_dim_integer",
+            "validation_params": {"min": 0, "max": 150},
+        },
+    }
+}
 
 @app.get("/validate")
-def validate_csv():
-    df = pd.read_csv("test-assets/test-users.csv")
-
-    try:
-        RULES.validate(df, lazy=True) #Lazy is Pandera term for loading all errors before returning
-        return {"valid": True, "message": "All rows valid.", "error_count": 0, "errors": []}
-
-    except pa.errors.SchemaErrors as e:
-        errors = e.failure_cases[["column", "index", "failure_case", "check"]]
-        #columns: The column that failed
-        #index: The row that failed
-        #failure_cases: The value that failed
-        #check: The rule that was broken
-        errors = errors.rename(columns={"index": "row", "failure_case": "bad_value"})
-        return JSONResponse(
-            status_code=422,
-            content={
-                "valid": False,
-                "error_count": len(errors),
-                "errors": errors.to_dict(orient="records"),
-            },
-        )
+def validate():
+    validator_service = ValidatorService()
+    result = validator_service.run(DATA, RULES_JSON)
+    return JSONResponse(content=result.to_dict())
