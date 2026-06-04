@@ -18,7 +18,7 @@ RULES_JSON = {
     "columns": {
         "id": {
             "required": True,
-            "type": "one_dim_integer",
+            "type": "one_dim_integer1",
             "validation_params": {"min": 1},
         },
         "name": {
