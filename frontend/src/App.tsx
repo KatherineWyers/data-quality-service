@@ -1,5 +1,5 @@
 import CsvValidator from './components/CsvValidator'
-import "./App.css";
+import './index.css'
 
 export default function App() {
   return <CsvValidator />

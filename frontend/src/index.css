@@ -11,18 +11,18 @@
 
 .page {
   min-height: 100vh;
-  background: #0d0f0e;
+  background: #faf9f6;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
   padding: 2rem;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 .card {
-  background: #161918;
-  border: 1px solid #2a2e2c;
-  border-radius: 16px;
+  background: #322c2b;
+  border: 1px solid #722f37;
+  border-radius: 10px;
   padding: 2.5rem;
   width: 100%;
   max-width: 640px;
@@ -36,36 +36,24 @@
   margin-bottom: 1.5rem;
 }
 
-.icon-wrap {
-  background: #dcff32;
-  color: #0d0f0e;
-  border-radius: 10px;
-  width: 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
 .title {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #f0f2f0;
+  color: #faf9f6;
   letter-spacing: -0.02em;
 }
 
 .subtitle {
   margin: 2px 0 0;
   font-size: 0.85rem;
-  color: #6b7570;
+  color: #faf9f6;
   font-weight: 500;
 }
 
 .divider {
   height: 1px;
-  background: #222625;
+  background: #ae8260;
   margin-bottom: 1.75rem;
 }
 
@@ -73,14 +61,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #dcff32;
-  color: #0d0f0e;
+  background: #93c572;
+  color: #322c2b;
   border: none;
   border-radius: 8px;
   padding: 0.75rem 1.5rem;
   font-size: 0.95rem;
   font-weight: 700;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Arial', sans-serif;
   letter-spacing: 0.01em;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -88,7 +76,7 @@
 }
 
 .btn:not(:disabled):hover {
-  background: #e8ff47;
+  background: #faf9f6;
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(220, 255, 50, 0.3);
 }
@@ -120,32 +108,16 @@
   animation: fadeIn 0.2s ease;
 }
 
-.result-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.result-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #6b7570;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-family: 'IBM Plex Mono', monospace;
-}
-
 .pre {
-  background: #0d0f0e;
+  background: #faf9f6;
   border: 1px solid #222625;
   border-radius: 8px;
   padding: 1.25rem;
   margin: 0;
   font-size: 0.82rem;
   line-height: 1.7;
-  color: #a8c49a;
-  font-family: 'IBM Plex Mono', monospace;
+  color: #000000;
+  font-family: 'courier', monospace;
   overflow-x: auto;
   white-space: pre-wrap;
   word-break: break-word;
@@ -154,7 +126,7 @@
 }
 
 .pre-error {
-  color: #f87171;
+  color: #faf9f6;
   border-color: #3a1e1e;
   background: #110d0d;
 }
