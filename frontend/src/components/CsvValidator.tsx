@@ -29,7 +29,7 @@ export default function CsvValidator() {
                 <div className="header">
                     <div>
                         <h1 className="title">Data Quality Service</h1>
-                        <p className="subtitle">Inspect and validate your data pipeline</p>
+                        <p className="subtitle">Inspect and validate your data pipeline. Test the system below</p>
                     </div>
                 </div>
 
