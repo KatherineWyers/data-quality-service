@@ -4,6 +4,26 @@ on:
     branches:
       - main
 jobs:
+  test-backend:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Install dependencies
+        working-directory: backend
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip installl -r requirements.txt
+      - name: Run pytest
+        working-directory: backend
+        run: |
+          source .venv/bin/activate
+          pytest tests/ -v
   run_pull:
     name: run pull
     runs-on: ubuntu-latest
