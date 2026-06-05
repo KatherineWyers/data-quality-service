@@ -46,6 +46,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test-backend, test-frontend]
     steps:
+    - name: Download dist artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: frontend-dist
+        path: dist/
     - name: install ssh keys
       run: |
         mkdir -p ~/.ssh
@@ -53,7 +58,11 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
         chmod 600 ~/.ssh/id_ed25519
         ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-    - name: connect and pull
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull origin ${{ secrets.MAIN_BRANCH }} && cd frontend && npm run build"
+    - name: connect and pull backend
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull origin ${{ secrets.MAIN_BRANCH }}"
+    - name: Copy frontend dist to server
+      run: |
+        scp -r dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.WORK_DIR }}/frontend/dist/
     - name: cleanup
+      if: always()
       run: rm -rf ~/.ssh
