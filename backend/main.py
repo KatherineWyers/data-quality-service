@@ -7,8 +7,8 @@ app = FastAPI()
 
 DATA = pd.DataFrame({
     "id": [1, 2, 3, 4],
-    "name": ["Jane", "Tom", "Bob","Jim"],
-    "age": [25, 30, 34, 67],
+    "name": ["Jane", "Tom", "Bob", "Jim"],
+    "age": [25, 30, 34, 167],
 })
 
 RULES_JSON = {
