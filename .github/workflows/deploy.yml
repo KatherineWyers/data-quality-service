@@ -68,7 +68,7 @@ jobs:
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull origin ${{ secrets.MAIN_BRANCH }}"
     - name: Copy frontend dist to server
       run: |
-        scp -r dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.WORK_DIR }}/frontend/dist/
+        scp -r dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.WORK_DIR }}/frontend/
     - name: cleanup
       if: always()
       run: rm -rf ~/.ssh
