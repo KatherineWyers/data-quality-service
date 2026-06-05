@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: debug key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | head -1
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tail -1
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | wc -l
       - name: install ssh keys
         run: |
           install -m 600 -D /dev/null ~/.ssh/id_ed25519
