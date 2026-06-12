@@ -59,7 +59,37 @@ export default function CsvValidator() {
                         <pre className={`pre${status === "error" ? " pre-error" : ""}`}>
                     {status === "loading" && "Running…"}
                             {status === "error" && errorMsg}
-                            {status === "success" && JSON.stringify(result, null, 2)}
+                            {status === "success" && result && (
+                                <>
+                                    <p>Result: {result.success ? "Success" : "Failed"}</p>
+                                    <p>Message: {result.message}</p>
+                                </>
+                            )}
+
+                            {status === "success" && result && (
+                                <table className="issues-table" style={{ borderCollapse: "collapse", width: "100%" }}>
+                                    <thead>
+                                    <tr>
+                                        {Object.keys(result.issues[0] || {}).map((key) => (
+                                            <th key={key} style={{ border: "1px solid #ccc", padding: "8px", textAlign: "left" }}>
+                                                {key}
+                                            </th>
+                                        ))}
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {result.issues.map((issue, i) => (
+                                        <tr key={i}>
+                                            {Object.values(issue).map((val, j) => (
+                                                <td key={j} style={{ border: "1px solid #ccc", padding: "8px" }}>
+                                                    {typeof val === "object" ? JSON.stringify(val) : String(val)}
+                                                </td>
+                                            ))}
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            )}
                         </pre>
                     </div>
                 )}
