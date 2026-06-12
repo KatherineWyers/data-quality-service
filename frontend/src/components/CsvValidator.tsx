@@ -1,9 +1,17 @@
 import { useState } from "react";
 
-type ValidationResult = Record<string, unknown> | unknown[] | null;
+interface ValidationIssue {
+    [key: string]: unknown;
+}
+
+interface ValidationResult {
+    success: boolean;
+    message: string;
+    issues: ValidationIssue[];
+}
 
 export default function CsvValidator() {
-    const [result, setResult] = useState<ValidationResult>(null);
+    const [result, setResult] = useState<ValidationResult | null>(null);
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [errorMsg, setErrorMsg] = useState<string>("");
 
@@ -14,7 +22,7 @@ export default function CsvValidator() {
         try {
             const res = await fetch("/validate");
             if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-            const data = await res.json();
+            const data: ValidationResult = await res.json();
             setResult(data);
             setStatus("success");
         } catch (err) {
@@ -52,7 +60,6 @@ export default function CsvValidator() {
                     )}
                 </button>
 
-                {/* Result area */}
                 {status !== "idle" && (
                     <div className="result-wrap">
                         <div className={"divider"}></div>
@@ -78,9 +85,9 @@ export default function CsvValidator() {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {result.issues.map((issue, i) => (
+                                    {result.issues.map((issue: ValidationIssue, i: number) => (
                                         <tr key={i}>
-                                            {Object.values(issue).map((val, j) => (
+                                            {Object.values(issue).map((val, j: number) => (
                                                 <td key={j} style={{ border: "1px solid #ccc", padding: "8px" }}>
                                                     {typeof val === "object" ? JSON.stringify(val) : String(val)}
                                                 </td>
